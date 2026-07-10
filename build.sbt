@@ -1,11 +1,11 @@
 name := "apibuilder"
 organization := "io.apibuilder"
 
-ThisBuild / scalaVersion := "3.7.3"
+ThisBuild / scalaVersion := "3.8.4"
 
 val playJsonVersion = "2.10.6"
 
-val avroVersion = "1.11.1"
+val avroVersion = "1.12.1"
 
 lazy val allScalacOptions = Seq(
   "-feature"
@@ -24,7 +24,7 @@ lazy val lib = project
   .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play-json" % playJsonVersion,
-      "joda-time" % "joda-time" % "2.14.0",
+      "joda-time" % "joda-time" % "2.14.2",
     )
   )
 
@@ -52,7 +52,7 @@ lazy val swagger = project
   .settings(
     scalacOptions ++= allScalacOptions,
     libraryDependencies ++= Seq(
-      "io.swagger" % "swagger-parser" % "1.0.61",
+      "io.swagger" % "swagger-parser" % "1.0.76",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
     ),
     Test / javaOptions ++= Seq(
@@ -88,9 +88,9 @@ lazy val generated = project
       jdbc,
       "com.github.mbryzek" % "lib-query" % "0.0.14",
       "com.github.mbryzek" % "lib-util" % "0.0.24",
-      "joda-time" % "joda-time" % "2.14.0",
+      "joda-time" % "joda-time" % "2.14.2",
       "org.playframework.anorm" %% "anorm-postgres" % "2.7.0",
-      "org.postgresql" % "postgresql" % "42.7.7",
+      "org.postgresql" % "postgresql" % "42.7.11",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test,
     )
   )
@@ -107,7 +107,7 @@ lazy val api = project
     PlayKeys.fileWatchService := play.dev.filewatch.FileWatchService.jdk7(play.sbt.run.toLoggerProxy(sLog.value)),
     PlayKeys.playDefaultPort := 9001,
     testOptions += Tests.Argument("-oF"),
-    javaAgents += "com.datadoghq" % "dd-java-agent" % "1.53.0",
+    javaAgents += "com.datadoghq" % "dd-java-agent" % "1.63.0",
     routesImport += "io.apibuilder.api.v0.Bindables.Core._",
     routesImport += "io.apibuilder.api.v0.Bindables.Models._",
     routesImport += "io.apibuilder.common.v0.Bindables.Models._",
@@ -119,12 +119,12 @@ lazy val api = project
       "org.playframework" %% "play-guice" % "3.0.6",
       "com.google.inject" % "guice" % "5.1.0",
       "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0",
-      "org.projectlombok" % "lombok" % "1.18.42" % "provided",
+      "org.projectlombok" % "lombok" % "1.18.46" % "provided",
       "com.github.mbryzek" % "lib-cipher" % "0.0.13",
       "com.github.mbryzek" % "lib-util" % "0.0.24",
       "com.sendgrid"      %  "sendgrid-java"  % "4.10.3",
       "com.github.mbryzek" % "lib-query" % "0.0.14",
-      "com.rollbar" % "rollbar-java" % "2.0.0",
+      "com.rollbar" % "rollbar-java" % "2.3.0",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test,
       "com.github.tomakehurst" % "wiremock-standalone" % "3.0.1" % Test
     ),
@@ -146,7 +146,7 @@ lazy val app = project
     scalacOptions ++= allScalacOptions,
     PlayKeys.fileWatchService := play.dev.filewatch.FileWatchService.jdk7(play.sbt.run.toLoggerProxy(sLog.value)),
     PlayKeys.playDefaultPort := 9000,
-    javaAgents += "com.datadoghq" % "dd-java-agent" % "1.53.0",
+    javaAgents += "com.datadoghq" % "dd-java-agent" % "1.63.0",
     routesImport += "io.apibuilder.api.v0.Bindables.Core._",
     routesImport += "io.apibuilder.api.v0.Bindables.Models._",
     routesImport += "io.apibuilder.common.v0.Bindables.Models._",
@@ -155,12 +155,12 @@ lazy val app = project
       guice,
       "com.google.inject" % "guice" % "5.1.0",
       "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0",
-      "org.projectlombok" % "lombok" % "1.18.42" % "provided",
+      "org.projectlombok" % "lombok" % "1.18.46" % "provided",
       "org.apache.commons" % "commons-compress" % "1.28.0",
       "com.github.tototoshi" %% "scala-csv" % "1.4.0",
       "com.vladsch.flexmark" % "flexmark-all" % "0.64.8",
       "org.webjars" %% "webjars-play" % "3.0.1",
-      "org.webjars" % "bootstrap" % "3.3.7",
+      "org.webjars" % "bootstrap" % "5.3.8",
       "org.webjars" % "bootstrap-social" % "5.0.0",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
     ),
@@ -187,7 +187,7 @@ lazy val commonSettings: Seq[Setting[_]] = Seq(
   name ~= ("apibuilder-" + _),
   organization := "io.apibuilder",
   libraryDependencies ++= Seq(
-    "org.atteo" % "evo-inflector" % "1.3",
+    "org.atteo" % "evo-inflector" % "2.0",
     "org.typelevel" %% "cats-core" % "2.12.0",
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
   ),
